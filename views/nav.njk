@@ -1,0 +1,35 @@
+<nav class="navbar">
+    <div class="navbar__inner">
+        <a href="/" class="logo">Forum</a>
+        <button class="navbar__button" aria-label="Open menu">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z" />
+            </svg>
+        </button>
+
+        <div class="navbar__collapse">
+            <ul class="menu">
+                {% if loggedIn %}
+                <li>
+                    <a href="/new">Post</a>
+                </li>
+                <li>
+                    <a href="/profile">{{ user }}</a>
+                </li>
+                <li>
+                    <form class="logoutButtonNav" action="/logout" method="POST">
+                        <button type="submit" id="logout">Logout</button>
+                    </form>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                <li>
+                    <a href="/register">Create account</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

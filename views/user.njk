@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+{% block content %}
+
+<div class="post">
+    <div class="postContent">
+        <h2>{{ users.name }}'s {{ title }}</h2>
+        <p>{{ users.Desc }}</p>
+        <h6>Account created: {{ users.createdAt }}</h6>
+    </div>
+</div>
+
+{% endblock %}
