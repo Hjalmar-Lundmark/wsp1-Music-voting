@@ -285,5 +285,11 @@ router.post('/logout', async function (req, res, next) {
     }
 });
 
+// testing with link
+let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
+let part = spotify.split("/");
+//console.log(part);
+let songId = part[4].split("?");
+//console.log(songId[0]); //works
 
 module.exports = router;

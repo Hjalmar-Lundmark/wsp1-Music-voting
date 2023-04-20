@@ -114,18 +114,16 @@ select {
   }
 }
 body {
-  background-color: darkblue;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 main {
-  max-width: min(80ch, 100vw - 1rem);
+  padding: 1rem;
+  max-width: min(85ch, 100vw - 1rem);
   margin-inline: auto;
-}
-main > h1 {
-  color: white;
+  background-color: lightyellow;
 }
 
 .container {
@@ -140,7 +138,6 @@ h5, h6 {
 .navbar {
   width: 100%;
   background-color: lightskyblue;
-  margin-bottom: 1rem;
 }
 .navbar__inner {
   display: flex;
@@ -207,8 +204,8 @@ main > ul {
 main > ul > li {
   list-style: none;
   border: solid 3px red;
-  background-color: white;
-  border-radius: 25px;
+  background-color: lightskyblue;
+  border-radius: 14px;
 }
 
 form {
@@ -229,7 +226,6 @@ footer {
   color: white;
   padding-bottom: 2rem;
   padding-top: 1rem;
-  margin-top: 1rem;
 }
 footer > * > p > a {
   color: lightblue;
@@ -247,10 +243,6 @@ footer > * > p > a {
   background-color: white;
   margin-top: 0.5rem;
   border-radius: 25px;
-}
-
-.postContent {
-  margin: 0.5rem;
 }
 
 .commentForm {
@@ -292,6 +284,17 @@ footer > * > p > a {
 
 .deleteButton {
   margin-top: 0.5rem;
+}
+
+.bgImage {
+  background-image: url(/images/doggo.jpg);
+  background-size: cover;
+}
+
+.postContent {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */
