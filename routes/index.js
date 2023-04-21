@@ -26,7 +26,7 @@ router.get('/', async function (req, res, next) {
 
     res.render('index.njk', {
         rows: rows,
-        title: 'Forum',
+        title: 'Music',
         user: req.session.user,
         loggedIn: req.session.LoggedIn,
     });
@@ -286,6 +286,7 @@ router.post('/logout', async function (req, res, next) {
 });
 
 // testing with link
+// when going into DB
 let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
 let part = spotify.split("/");
 //console.log(part);

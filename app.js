@@ -18,7 +18,6 @@ app.use(
 )*/
 
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/user');
 
 app.use(express.static('public'))
 
@@ -29,7 +28,6 @@ nunjucks.configure('views', {
 });
 
 app.use('/', indexRouter);
-app.use('/user', userRouter);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
