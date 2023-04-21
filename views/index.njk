@@ -2,14 +2,19 @@
 {% block content %}
 
 <h1>Utspringslåt - NTI TE20</h1>
-<h3>Rösta för den låt du vill ska väljas till utspringet. Måsta vara inloggad för att rösta eller skicka in en låt. 
-1 röst per person. {% if loggedIn %}<a href="/new">Föreslå låt</a>{% endif %}</h3>
+<h3>Rösta för den låt du vill ska väljas till utspringet. Måsta vara inloggad för att rösta eller skicka in en låt.
+    1 röst per person. {% if loggedIn %}<a href="/new">Föreslå låt</a>{% endif %}</h3>
 <ul>
     {% for row in rows %}
     <li>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{ row.songId }}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/{{ row.songId }}?utm_source=generator" width="100%" height="352"
+            frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <div class="postContent">
-            <button>Rösta</button>
+            <form action="/vote" method="post" class="form-wo-border">
+                <button id="{{ row.id }}">Rösta</button>
+            </form>
             <p>Röster: {{ row.votes }}</p>
         </div>
     </li>

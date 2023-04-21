@@ -297,4 +297,8 @@ footer > * > p > a {
   gap: 5px;
 }
 
+.form-wo-border {
+  border: none;
+}
+
 /*# sourceMappingURL=style.css.map */

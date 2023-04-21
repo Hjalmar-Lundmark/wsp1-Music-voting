@@ -145,28 +145,6 @@ router.get('/profile', async function (req, res, next) {
     }
 });
 
-// GET and POST for updating your profiles bio
-router.get('/bio', async function (req, res, next) {
-    if(req.session.LoggedIn) {
-        const [info] = await promisePool.query("SELECT hl21users.id, hl21users.name, hl21users.Desc, hl21users.createdAt FROM hl21users WHERE name=?", req.session.user);
-        return res.render('bio.njk', {
-            title: 'bio',
-            user: req.session.user,
-            info,
-            loggedIn: req.session.LoggedIn,
-        });
-    } else {
-        return res.redirect('/login');
-    }
-});
-
-router.post('/bio', async function (req, res, next) {
-    const { bio } = req.body;
-    const [row] = await promisePool.query("UPDATE hl21users SET `Desc`=? WHERE name=?", [bio, req.session.user]);
-    res.redirect('/profile'); // ^ I need tics around Desc because there already exists a DESC in SQL ^
-});
-
-
 //GET and POST login
 router.get('/login', function (req, res, next) {
     if (req.session.LoggedIn) {
@@ -288,11 +266,20 @@ router.post('/logout', async function (req, res, next) {
     }
 });
 
-// testing with link
-// when going into DB
-let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
-let part = spotify.split("/");
-let songId = part[4].split("?");
-//console.log(songId[0]); //works
+router.post('/vote', async function (req, res, next) {
+    if (req.session.LoggedIn) {
+        
+        /*const [rows] = await promisePool.query("SELECT * FROM hl21music");
+        const sId =  // ???
+        let count = rows[sId].votes;
+        count = count +1;*/
+
+        //const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, sId]);
+
+        return res.redirect('/');
+    } else {
+        return res.redirect('/');
+    }
+})
 
 module.exports = router;
