@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="navbar__inner">
-        <a href="/" class="logo">Vote</a>
+        <a href="/" class="logo">Låtar</a>
         <button class="navbar__button" aria-label="Open menu">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                 <path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z" />
@@ -11,22 +11,22 @@
             <ul class="menu">
                 {% if loggedIn %}
                 <li>
-                    <a href="/new">Submit</a>
+                    <a href="/new">Föreslå låt</a>
                 </li>
                 <li>
                     <a href="/profile">{{ user }}</a>
                 </li>
                 <li>
                     <form class="logoutButtonNav" action="/logout" method="POST">
-                        <button type="submit" id="logout">Logout</button>
+                        <button type="submit" id="logout">Logga ut</button>
                     </form>
                 </li>
                 {% else %}
                 <li>
-                    <a href="/login">Login</a>
+                    <a href="/login">Logga in</a>
                 </li>
                 <li>
-                    <a href="/register">Create account</a>
+                    <a href="/register">Skapa konto</a>
                 </li>
                 {% endif %}
             </ul>

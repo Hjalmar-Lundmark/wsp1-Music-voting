@@ -20,9 +20,10 @@ router.use(session({
 var validator = require('validator');
 let responseErr = {}
 
-// GET forum posts
+// GET music page
 router.get('/', async function (req, res, next) {
-    const [rows] = await promisePool.query("SELECT hl21forum.*, hl21users.name FROM hl21forum JOIN hl21users WHERE hl21forum.authorId = hl21users.id ORDER BY hl21forum.id DESC");
+    //const [rows] = await promisePool.query("SELECT hl21music.*, hl21users.name FROM hl21music JOIN hl21users WHERE hl21music.authorId = hl21users.id ORDER BY hl21music.votes DESC");
+    const [rows] = await promisePool.query("SELECT * FROM hl21music ORDER BY votes DESC");
 
     res.render('index.njk', {
         rows: rows,
@@ -47,36 +48,38 @@ router.get('/new', async function (req, res, next) {
 });
 
 router.post('/new', async function (req, res, next) {
-    const { title, content } = req.body;
+    const { content } = req.body;
     responseErr = {
         err: [],
     }
-
-    if (!title) {
-        responseErr.err.push('Post needs a title');
-    }
+    
     if (!content) {
-        responseErr.err.push('Post needs content');
+        responseErr.err.push('Infoga innehåll');
     }
-    if (title.length < 4) {
-        responseErr.err.push('Title needs atlest 4 characters');
+    if (!content.startsWith("https://open.spotify.com/track/")) {
+        responseErr.err.push('Behöver vara en spotify låt länk');
     }
 
     if (responseErr.err.length === 0) {
-        //sanitize
-        const sanitize = (str) => {
+        //let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
+        let spotify = content
+        let part = spotify.split("/");
+        let songId = part[4].split("?");
+
+        // sanitizing is not needed because I have already edited the string enough
+        /*const sanitize = (str) => {
             let temp = str.trim();
             temp = validator.stripLow(temp);
             temp = validator.escape(temp);
             return temp;
         };
-        if (title) sanitizedTitle = sanitize(title);
-        if (content) sanitizedBody = sanitize(content);
+        if (content) sanitizedBody = sanitize(songId);
+        console.log(sanitizedBody);
+        */
 
-
-        const [rows] = await promisePool.query("INSERT INTO hl21forum (authorId, title, content) VALUES (?, ?, ?)",
-            [req.session.userId, sanitizedTitle, sanitizedBody]);
-        res.redirect('/post/' + rows.insertId + '');
+        const [rows] = await promisePool.query("INSERT INTO hl21music (authorId, songId, votes) VALUES (?, ?, ?)",
+            [req.session.userId, songId[0], 0]);
+        res.redirect('/');
     } else {
         res.redirect('/new');
     }
@@ -195,7 +198,7 @@ router.post('/login', async function (req, res, next) {
                     req.session.user = username;
                     req.session.userId = users[0].id;
                     req.session.LoggedIn = true;
-                    return res.redirect('/profile');
+                    return res.redirect('/');
                 } else {
                     responseErr.err.push('Invalid username or password');
                     res.redirect('/login');
@@ -256,7 +259,7 @@ router.post('/register', async function (req, res) {
             const [users] = await promisePool.query("SELECT * FROM hl21users WHERE name=?", username);
             req.session.userId = users[0].id;
             req.session.LoggedIn = true;
-            return res.redirect('/profile'); // Logs the user in after account is created
+            return res.redirect('/'); // Logs the user in after account is created
         });
     } else {
         res.redirect('/register');
@@ -269,7 +272,7 @@ router.post('/delete', async function (req, res, next) {
     if (req.session.LoggedIn) {
         req.session.LoggedIn = false;
         await promisePool.query('DELETE FROM hl21users WHERE name=?', req.session.user);
-        res.redirect('/register');
+        res.redirect('/');
     } else {
         return res.status(401).send("Access denied");
     }
@@ -279,7 +282,7 @@ router.post('/delete', async function (req, res, next) {
 router.post('/logout', async function (req, res, next) {
     if (req.session.LoggedIn) {
         req.session.LoggedIn = false;
-        res.redirect('/login');
+        res.redirect('/');
     } else {
         return res.status(401).send("Access denied");
     }
@@ -289,7 +292,6 @@ router.post('/logout', async function (req, res, next) {
 // when going into DB
 let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
 let part = spotify.split("/");
-//console.log(part);
 let songId = part[4].split("?");
 //console.log(songId[0]); //works
 
