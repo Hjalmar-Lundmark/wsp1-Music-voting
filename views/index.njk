@@ -12,15 +12,17 @@
             frameBorder="0" allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <div class="postContent">
-            <form action="/vote" method="post" class="form-wo-border">
-                <button>Rösta</button>
-                <select name="rowId" id="rowId">
-                    <option value="{{ row.id }}"></option>
-                </select>
-                <select name="vote" id="vote">
-                    <option value="{{ row.votes }}"></option>
-                </select>
-            </form>
+            {% if loggedIn %}
+                <form action="/vote" method="post" class="form-wo-border">
+                    <button>Rösta</button>
+                    <select name="rowId" id="rowId">
+                        <option value="{{ row.id }}"></option>
+                    </select>
+                    <select name="vote" id="vote">
+                        <option value="{{ row.votes }}"></option>
+                    </select>
+                </form>
+            {% endif %}
             <p>Röster: {{ row.votes }}</p>
         </div>
     </li>
