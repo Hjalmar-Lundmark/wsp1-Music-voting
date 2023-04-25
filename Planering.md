@@ -30,3 +30,5 @@ v21 Tis, Fre: Hosting, klar, visa upp.
 
 21/4: Fortsatt CSS-styling, lagt till databas och låtar i databasen. Nu visar hemsidan upp låtar från databasen och deras röstar i stället för hårdkodade prototyper. Också lagt till att användare kan föreslå låtar. 
 ![Front page version 2](/public/images/frontPage_v2.jpg "Front page")
+
+25/4: Senast fixade jag koden för att föreslå låtar och började skapa koden för att rösta på en låt. Idag ska jag fortsätta med röstnings funktionen och förhoppningsvis bli klar med det. 

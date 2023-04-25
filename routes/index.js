@@ -67,66 +67,11 @@ router.post('/new', async function (req, res, next) {
         let songId = part[4].split("?");
 
         // sanitizing is not needed because I have already edited the string enough
-        /*const sanitize = (str) => {
-            let temp = str.trim();
-            temp = validator.stripLow(temp);
-            temp = validator.escape(temp);
-            return temp;
-        };
-        if (content) sanitizedBody = sanitize(songId);
-        console.log(sanitizedBody);
-        */
-
         const [rows] = await promisePool.query("INSERT INTO hl21music (authorId, songId, votes) VALUES (?, ?, ?)",
             [req.session.userId, songId[0], 0]);
         res.redirect('/');
     } else {
         res.redirect('/new');
-    }
-});
-
-// GET and POST for loading post w/comments and posting a comment
-router.get('/post/:id', async (req, res) => {
-    const postId = req.params.id;
-    const [post] = await promisePool.query("SELECT hl21forum.*, hl21users.name FROM hl21forum JOIN hl21users WHERE hl21forum.id=? AND hl21forum.authorId = hl21users.id", postId); //Works
-    const [comments] = await promisePool.query("SELECT hl21comments.*, hl21users.name FROM hl21comments JOIN hl21users WHERE postId=? AND hl21comments.authorId = hl21users.id", postId);
-
-    res.render('post.njk', {
-        title: 'Post ' + postId,
-        post: post[0],
-        comments,
-        loggedIn: req.session.LoggedIn,
-        user: req.session.user,
-        error: responseErr,
-    });
-});
-
-router.post('/comment', async function (req, res, next) {
-    const { post, content } = req.body;
-    responseErr = {
-        err: [],
-    }
-
-    if (!content) {
-        responseErr.err.push('Comment needs content');
-    }
-
-    if (responseErr.err.length === 0) {
-        //sanitize
-        const sanitize = (str) => {
-            let temp = str.trim();
-            temp = validator.stripLow(temp);
-            temp = validator.escape(temp);
-            return temp;
-        };
-        if (content) sanitizedBody = sanitize(content);
-
-
-        const [rows] = await promisePool.query("INSERT INTO hl21comments (authorId, postId, content) VALUES (?, ?, ?)",
-            [req.session.userId, post, sanitizedBody]);
-        res.redirect('/post/' + post + '');
-    } else {
-        res.redirect('/post/' + post + '');
     }
 });
 
@@ -271,6 +216,7 @@ router.post('/vote', async function (req, res, next) {
         
         /*const [rows] = await promisePool.query("SELECT * FROM hl21music");
         const sId =  // ???
+        document.getElementbyId() // ???
         let count = rows[sId].votes;
         count = count +1;*/
 
