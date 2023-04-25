@@ -193,3 +193,8 @@ footer {
 .form-wo-border {
     border: none;
 }
+
+/* Temporary solution to make voting work */
+select {
+    display: none;
+}

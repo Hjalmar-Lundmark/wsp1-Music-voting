@@ -213,14 +213,13 @@ router.post('/logout', async function (req, res, next) {
 
 router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
-        
-        /*const [rows] = await promisePool.query("SELECT * FROM hl21music");
-        const sId =  // ???
-        document.getElementbyId() // ???
-        let count = rows[sId].votes;
-        count = count +1;*/
+        const {rowId, vote} = req.body; // Temp(?) solution to make voting work
+        let count = vote / 1; // javascript moment
+        count = count + 1;
 
-        //const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, sId]);
+        const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, rowId]);
+
+        // confirm vote and disable voting again
 
         return res.redirect('/');
     } else {

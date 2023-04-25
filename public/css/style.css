@@ -301,4 +301,9 @@ footer > * > p > a {
   border: none;
 }
 
+/* Temporary solution to make voting work */
+select {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
