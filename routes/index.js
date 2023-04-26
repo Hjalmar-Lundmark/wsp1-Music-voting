@@ -213,8 +213,9 @@ router.post('/logout', async function (req, res, next) {
 
 router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
-        const {rowId, vote} = req.body; // Temp(?) solution to make voting work
-        let count = vote / 1; // javascript moment
+        const {rowId} = req.body; // Temp(?) solution to make voting work
+        const [rows] = await promisePool.query("SELECT hl21music.votes FROM hl21music WHERE id=?", rowId);
+        let count = rows[0].votes / 1; // javascript moment
         count = count + 1;
 
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, rowId]);
