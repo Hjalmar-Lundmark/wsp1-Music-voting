@@ -88,21 +88,6 @@ router.post('/new', async function (req, res, next) {
     }
 });
 
-//GET profile
-router.get('/profile', async function (req, res, next) {
-    if (req.session.LoggedIn) {
-        const [info] = await promisePool.query("SELECT hl21users2.id, hl21users2.name, hl21users2.Desc, hl21users2.createdAt FROM hl21users2 WHERE name=?", req.session.user);
-        return res.render('profile.njk', {
-            title: 'Profile',
-            user: req.session.user,
-            info,
-            loggedIn: req.session.LoggedIn,
-        });
-    } else {
-        return res.redirect('/login');
-    }
-});
-
 //GET and POST login
 router.get('/login', function (req, res, next) {
     if (req.session.LoggedIn) {

@@ -25,10 +25,10 @@
                         </select>
                     </form>
             {% endif %}
-            <p>Röster: {{ row.votes }}</p>
             {% if voted and (votedOn == row.songId) %}
                 <p>✅</p>
             {% endif %}
+            <p>Röster: {{ row.votes }}</p>
         </div>
     </li>
     {% endfor %}
