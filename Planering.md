@@ -1,27 +1,15 @@
 # Planering - Music vote
 
 ## Grovplanering 
-v16 Tis: Planering, grund med UI. 
 
-v16 Fre: Planering, styling, skapa DB, börja ta info från DB, js för att föreslå låtar, 
-
-v17 Tis: DB, js för att få röstning att fungera, 
-
-v17 Fre: ^
-
-v18 Tis: Login med google konto?
-
-v18 Fre: ^
-
-v19 Tis: ^
-
-v19 Fre: 
-
-v20 Tis: 
-
-~~v20 Fre: ~~
-
-v21 Tis, Fre: Hosting, klar, visa upp. 
+|   | Tisdag  | Fredag  |
+|---|---|---|
+| v16  | Planering, grund med UI.  | Planering, styling, skapa DB, börja ta info från DB, js för att föreslå låtar,  |
+| v17  | DB, js för att få röstning att fungera,   | forts.  |
+| v18  | Login med google?  |   |
+| v19  | ^  | -  |
+| v20  | ^  | ^  |
+| v21  | Hosting, klar, visa upp  |   |
 
 
 ## Loggbok
@@ -36,4 +24,8 @@ v21 Tis, Fre: Hosting, klar, visa upp.
 Idag skapade jag den första delen till röstnings systemet, att antal röster går upp när en inloggad användare klickar på den knappen. Nästa lektion ska jag fixa resten, att användaren bara ska kunna rösta på en låt och bytta mellan vilken låt. Jag använda också [AI](https://hotpot.ai/art-generator) för att skapa en bild som ska passa som bakgrundsbild, vilket ser hemskt ut och jag inte kommer använda mig av. 
 ![Front page version 3](/public/images/frontPage_v3.jpg "Front page version 3")
 
-28/4: 
+28/4: Senast fick jag röstning att fungera men att ett konto kunde rösta hur många gånger den vill. Nu ska jag fixa så ett konto kan bara rösta en gång. Borde inte bli något stort problem, jag tänkte skapa en del i databasen för att spara om ett konto har röstat eller inte. 
+
+Idag byggde jag om databas tabellen för användare, 
+
+2/5: 

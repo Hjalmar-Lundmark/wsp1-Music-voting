@@ -22,14 +22,28 @@ let responseErr = {}
 
 // GET music page
 router.get('/', async function (req, res, next) {
-    //const [rows] = await promisePool.query("SELECT hl21music.*, hl21users.name FROM hl21music JOIN hl21users WHERE hl21music.authorId = hl21users.id ORDER BY hl21music.votes DESC");
+    //const [rows] = await promisePool.query("SELECT hl21music.*, hl21users2.name FROM hl21music JOIN hl21users2 WHERE hl21music.authorId = hl21users2.id ORDER BY hl21music.votes DESC");
     const [rows] = await promisePool.query("SELECT * FROM hl21music ORDER BY votes DESC");
+
+    // checks if the user has voted before, thus stopping them from voting again
+    if (req.session.LoggedIn) {
+        const [Voted] = await promisePool.query("SELECT hl21users2.votedOn FROM hl21users2 WHERE name=?", req.session.user);
+        console.log(Voted[0].votedOn);
+        if (Voted[0].votedOn !== null) {
+            req.session.voted = true;
+            req.session.votedOn = Voted[0].votedOn;
+        } else {
+            req.session.voted = false;
+        }
+    }
 
     res.render('index.njk', {
         rows: rows,
         title: 'Music',
         user: req.session.user,
         loggedIn: req.session.LoggedIn,
+        voted: req.session.voted, 
+        votedOn: req.session.votedOn, 
     });
 });
 
@@ -47,6 +61,7 @@ router.get('/new', async function (req, res, next) {
     }
 });
 
+// submit new song
 router.post('/new', async function (req, res, next) {
     const { content } = req.body;
     responseErr = {
@@ -78,7 +93,7 @@ router.post('/new', async function (req, res, next) {
 //GET profile
 router.get('/profile', async function (req, res, next) {
     if (req.session.LoggedIn) {
-        const [info] = await promisePool.query("SELECT hl21users.id, hl21users.name, hl21users.Desc, hl21users.createdAt FROM hl21users WHERE name=?", req.session.user);
+        const [info] = await promisePool.query("SELECT hl21users2.id, hl21users2.name, hl21users2.Desc, hl21users2.createdAt FROM hl21users2 WHERE name=?", req.session.user);
         return res.render('profile.njk', {
             title: 'Profile',
             user: req.session.user,
@@ -114,7 +129,7 @@ router.post('/login', async function (req, res, next) {
         responseErr.err.push('Password is required');
     }
     if (responseErr.err.length === 0) { // I feel like this is a bit too much spagetti
-        const [users] = await promisePool.query("SELECT * FROM hl21users WHERE name=?", username);
+        const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
         if (users.length > 0) {
             bcrypt.compare(password, users[0].password, function (err, result) {
                 if (result) {
@@ -169,7 +184,7 @@ router.post('/register', async function (req, res) {
     }
     
     if (responseErr.err.length === 0) {
-        const [testing] = await promisePool.query("SELECT * FROM hl21users WHERE name=?", username);
+        const [testing] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
 
         if (testing.length > 0) {
             responseErr.err.push('Username is already taken');
@@ -177,9 +192,9 @@ router.post('/register', async function (req, res) {
         }
 
         await bcrypt.hash(password, 10, async function (err, hash) {
-            const [rows] = await promisePool.query('INSERT INTO hl21users (name, password) VALUES (?, ?)', [username, hash])
+            const [rows] = await promisePool.query('INSERT INTO hl21users2 (name, password) VALUES (?, ?)', [username, hash])
             req.session.user = username;
-            const [users] = await promisePool.query("SELECT * FROM hl21users WHERE name=?", username);
+            const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
             req.session.userId = users[0].id;
             req.session.LoggedIn = true;
             return res.redirect('/'); // Logs the user in after account is created
@@ -194,7 +209,7 @@ router.post('/register', async function (req, res) {
 router.post('/delete', async function (req, res, next) {
     if (req.session.LoggedIn) {
         req.session.LoggedIn = false;
-        await promisePool.query('DELETE FROM hl21users WHERE name=?', req.session.user);
+        await promisePool.query('DELETE FROM hl21users2 WHERE name=?', req.session.user);
         res.redirect('/');
     } else {
         return res.status(401).send("Access denied");
@@ -214,18 +229,21 @@ router.post('/logout', async function (req, res, next) {
 router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const {rowId} = req.body; // Temp(?) solution to make voting work
-        const [rows] = await promisePool.query("SELECT hl21music.votes FROM hl21music WHERE id=?", rowId);
+        const [rows] = await promisePool.query("SELECT hl21music.votes, hl21music.songId FROM hl21music WHERE id=?", rowId);
+        console.log(rows);
         let count = rows[0].votes / 1; // javascript moment
         count = count + 1;
 
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, rowId]);
 
         // confirm vote and disable voting again
-
+        const [votedOn] = await promisePool.query("UPDATE hl21users2 SET votedOn=? WHERE name=?", [rows[0].songId, req.session.user]);
         return res.redirect('/');
     } else {
         return res.redirect('/');
     }
-})
+});
+
+// POST for getting rid of your vote?
 
 module.exports = router;
