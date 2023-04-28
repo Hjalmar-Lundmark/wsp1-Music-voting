@@ -4,7 +4,11 @@
 <h1>Utspringslåt - NTI TE20</h1>
 <h3>Rösta för den låt du vill ska väljas till utspringet. Måsta vara inloggad för att rösta eller skicka in en låt.
     1 röst per person. {% if loggedIn %}<a href="/new">Föreslå låt.</a>{% endif %} 
-    {% if voted %}<a href="/">placeholder. </a>{% endif %}</h3>
+    {% if voted %}
+    <form action="/removeVote" method="post" class="form-wo-border">
+        <button>Byt röst</button>
+    </form>
+    {% endif %}</h3>
 <ul>
     {% for row in rows %}
     <li>

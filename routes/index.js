@@ -15,7 +15,6 @@ router.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    //LoggedIn: false,      // when removed keeps the user logged in even after restarting the page
 }));
 var validator = require('validator');
 let responseErr = {}
@@ -28,7 +27,6 @@ router.get('/', async function (req, res, next) {
     // checks if the user has voted before, thus stopping them from voting again
     if (req.session.LoggedIn) {
         const [Voted] = await promisePool.query("SELECT hl21users2.votedOn FROM hl21users2 WHERE name=?", req.session.user);
-        console.log(Voted[0].votedOn);
         if (Voted[0].votedOn !== null) {
             req.session.voted = true;
             req.session.votedOn = Voted[0].votedOn;
@@ -230,7 +228,6 @@ router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const {rowId} = req.body; // Temp(?) solution to make voting work
         const [rows] = await promisePool.query("SELECT hl21music.votes, hl21music.songId FROM hl21music WHERE id=?", rowId);
-        console.log(rows);
         let count = rows[0].votes / 1; // javascript moment
         count = count + 1;
 
@@ -244,6 +241,20 @@ router.post('/vote', async function (req, res, next) {
     }
 });
 
-// POST for getting rid of your vote?
+// POST for getting rid of your vote
+router.post('/removeVote', async function (req, res, next) {
+    if (req.session.LoggedIn) {
+        const [rows] = await promisePool.query("SELECT hl21music.votes FROM hl21music WHERE songId=?", req.session.votedOn);
+        let count = rows[0].votes / 1; // javascript moment
+        count = count - 1;
+        const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE songId=?", [count, req.session.votedOn]);
+
+        const [votedOn] = await promisePool.query("UPDATE hl21users2 SET votedOn=? WHERE name=?", [null, req.session.user]);
+        
+        return res.redirect('/');
+    } else {
+        return res.redirect('/');
+    }
+});
 
 module.exports = router;
