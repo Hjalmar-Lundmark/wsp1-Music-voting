@@ -150,18 +150,16 @@ footer {
     border: none;
 
     > button {
+        background-color: lightskyblue; 
+        color: black; 
         border: none;
-        background-color: lightskyblue;
         cursor: pointer;
-        padding: 0;
-        text-decoration: underline;
-        color: -webkit-link;
-    }
-
+      }
+      
     > button:hover {
-        background-color: red;
+        background-color: #f44336;
         color: white;
-    }
+      }
 }
 
 .pForm {
@@ -187,6 +185,7 @@ footer {
 .postContent {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 5px;
 }
 
@@ -198,4 +197,28 @@ footer {
 /* Temporary solution to make voting work */
 select {
     display: none;
+}
+
+.voteBtn {
+    background-color: orangered;
+    border: 1.5px black solid;
+    color: white;
+    text-align: center;
+    opacity: 0.7;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 2px;
+}
+  
+.voteBtn:hover {
+    opacity: 1;
+}
+
+.changeBtn {
+    font-size: 32px;
+    background-color: yellow;
+    margin: 0.5rem;
+    cursor: pointer;
 }

@@ -6,7 +6,7 @@
     1 röst per person. {% if loggedIn %}<a href="/new">Föreslå låt.</a>{% endif %} 
     {% if voted %}
     <form action="/removeVote" method="post" class="form-wo-border">
-        <button>Byt röst</button>
+        <button class="changeBtn">Byt röst</button>
     </form>
     {% endif %}</h3>
 <ul>
@@ -19,7 +19,7 @@
         <div class="postContent">
             {% if loggedIn and (voted == false) %}
                     <form action="/vote" method="post" class="form-wo-border">
-                        <button>Rösta</button>
+                        <button class="voteBtn">Rösta</button>
                         <select name="rowId" id="rowId">
                             <option value="{{ row.id }}"></option>
                         </select>
