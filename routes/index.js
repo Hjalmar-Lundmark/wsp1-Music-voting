@@ -141,7 +141,7 @@ router.get('/register', async function (req, res) {
         return res.redirect('/profile');
     } else {
         res.render('register.njk', { 
-            title: 'Register',
+            title: 'Register account',
             error: responseErr, 
         })
     }

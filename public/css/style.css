@@ -131,10 +131,6 @@ main {
   margin-inline: auto;
 }
 
-h5, h6 {
-  margin: 0;
-}
-
 .navbar {
   width: 100%;
   background-color: lightskyblue;
@@ -205,7 +201,7 @@ main > ul > li {
   list-style: none;
   border: solid 3px red;
   background-color: lightskyblue;
-  border-radius: 14px;
+  border-radius: 15px;
 }
 
 form {
@@ -229,24 +225,6 @@ footer {
 }
 footer > * > p > a {
   color: lightblue;
-}
-
-.post {
-  border: solid 3px red;
-  background-color: white;
-  border-radius: 25px;
-}
-
-.comment {
-  border: solid 3px red;
-  margin-left: 2rem;
-  background-color: white;
-  margin-top: 0.5rem;
-  border-radius: 25px;
-}
-
-.commentForm {
-  margin-top: 1.5rem;
 }
 
 .error {

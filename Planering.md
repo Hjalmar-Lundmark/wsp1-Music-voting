@@ -1,4 +1,4 @@
-# Planering - Music vote
+# Planering - Sida för utspringsslåt
 
 ## Ide
 
