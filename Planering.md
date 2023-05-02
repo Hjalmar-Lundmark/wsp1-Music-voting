@@ -39,4 +39,8 @@ Idag byggde jag om databas tabellen för användare för att lägga till en till
 
 Nästa lektion kanske jag hostar upp detta på [Glitch](https://glitch.com/) så har klassen ca 1 månad på sig att rösta fram en låt. Efter det vet jag inte om jag ska fortsätta lägga upp funktioner som en bättre login med google eller om jag ska göra något annat mindre projekt. 
 
-2/5: 
+2/5: Föra lektionen fick jag all röstning att fungera. Nu ska jag fortsätta med styling och mer specifikt få knappar att se okej ut. 
+
+Idag har jag fortsatt med CSS styling. Jag har också testat lägga upp projektet på Glitch, mest för repetition i det, men får ut error med något djupt i node_modules. 
+
+5/5: 
