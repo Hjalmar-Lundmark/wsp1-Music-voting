@@ -317,6 +317,7 @@ select {
   text-decoration: none;
   cursor: pointer;
   margin: 2px;
+  border-radius: 8px;
 }
 
 .voteBtn:hover {
@@ -328,6 +329,7 @@ select {
   background-color: yellow;
   margin: 0.5rem;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
