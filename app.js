@@ -5,8 +5,8 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
-var cookieParser = require('cookie-parser')
-/*app.use(cookieParser())
+/*var cookieParser = require('cookie-parser')
+app.use(cookieParser())
 app.set('trust proxy', 1)
 app.use(
   session({

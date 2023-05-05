@@ -43,4 +43,7 @@ Nästa lektion kanske jag hostar upp detta på [Glitch](https://glitch.com/) så
 
 Idag har jag fortsatt med CSS styling. Jag har också testat lägga upp projektet på Glitch, mest för repetition i det, men får ut error med något djupt i node_modules. 
 
-5/5: 
+5/5: Idag har jag inte gjort så mycket, bara lite omformatering. Anledningen beror på att jag har slut ideer, CSS styling är klart och hosting på Glitch ger konstiga error meddelanden. De meddelandena är problem i node_modules och ser ut att bero på något långt in i MySQL2s filer. 
+Jag har kollat igenom tutorials och dokumentation för Passport.js men det ger inget. 
+
+Sista 5 minutrarna av lektionen lyckades jag lösa de problemen genom att by till version 2.3.3 av MySQL2 istället för nuvarande 3.2.4. Jag hade också testat 3.2.2 och 3.2.3 utan framgång. Hade också testat annat, som att googla och skriva in saker från andras problem i terminalen, utan framgång. Sidan ligger upp på [https://te20-musik.glitch.me/](https://te20-musik.glitch.me/) för nu, jag har dock inte gett ut den till klassen utan väntar till tisdags lektionen. 
