@@ -72,7 +72,6 @@ router.post('/new', async function (req, res, next) {
     }
 
     if (responseErr.err.length === 0) {
-        //let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
         let spotify = content
         let part = spotify.split("/");
         let songId = part[4].split("?");
