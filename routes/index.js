@@ -9,14 +9,6 @@ const pool = mysql.createPool({
 });
 const promisePool = pool.promise();
 const bcrypt = require('bcrypt');
-var session = require('express-session');
-const { response } = require('express');
-router.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-}));
-var validator = require('validator');
 let responseErr = {}
 
 // GET music page
@@ -115,7 +107,7 @@ router.post('/login', async function (req, res, next) {
         responseErr.err.push('Password is required');
     }
     if (responseErr.err.length === 0) {
-        const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
+        const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", [username]);
         if (users.length > 0) {
             bcrypt.compare(password, users[0].password, function (err, result) {
                 if (result) {
@@ -207,12 +199,12 @@ router.post('/delete', async function (req, res, next) {
 //Log out
 router.post('/logout', async function (req, res, next) {
     if (req.session.LoggedIn) {
-        req.session.LoggedIn = false;
+        req.session.LoggedIn = false; 
         req.session.user = "";
         req.session.userId = null; // not sure what values these should have
         res.redirect('/');
     } else {
-        return res.status(401).send("Access denied");
+        return res.redirect('/');
     }
 });
 

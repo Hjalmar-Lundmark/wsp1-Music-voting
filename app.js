@@ -5,22 +5,17 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
-/*var cookieParser = require('cookie-parser')
-app.use(cookieParser())
-app.set('trust proxy', 1)
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false, 
-    saveUninitialized: true, 
-    cookie: {sameSite: false, secure: false, httpOnly: false,},
-  })
-)*/
 
 const indexRouter = require('./routes/index');
 
 app.use(express.static('public'))
 
+var session = require('express-session');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -33,9 +28,4 @@ app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
 
-var session = require('express-session');
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-}));
+var validator = require('validator');
