@@ -47,3 +47,7 @@ Idag har jag fortsatt med CSS styling. Jag har också testat lägga upp projekte
 Jag har kollat igenom tutorials och dokumentation för Passport.js men det ger inget. 
 
 Sista 5 minutrarna av lektionen lyckades jag lösa de problemen genom att by till version 2.3.3 av MySQL2 istället för nuvarande 3.2.4. Jag hade också testat 3.2.2 och 3.2.3 utan framgång. Hade också testat annat, som att googla och skriva in saker från andras problem i terminalen, utan framgång. Sidan ligger upp på [https://te20-musik.glitch.me/](https://te20-musik.glitch.me/) för nu, jag har dock inte gett ut den till klassen utan väntar till tisdags lektionen. 
+
+9/5: Jag fixade felen i Glitch och kunde därför ge ut hemsidan till klassen. Problemen med Glitch var bland annat skumma saker med npm paket, ett som inte fungerade förrän jag återinstallerade den och ett där nyare versioner inte fungerar. Sedan la jag till funktion för att jag ska stänga av röstning och ändrade hur sidan ska se ut när jag har stängt av röstning. Det kommer nog hända ungefär 30 maj. 
+
+Kvarvarande att göra kan vara att utveckla hemsidan för att den ska innehålla flera klasser, koppla upp Google-login eller något annat.  
