@@ -13,7 +13,6 @@ let responseErr = {}
 
 // GET music page
 router.get('/', async function (req, res, next) {
-    //const [rows] = await promisePool.query("SELECT hl21music.*, hl21users2.name FROM hl21music JOIN hl21users2 WHERE hl21music.authorId = hl21users2.id ORDER BY hl21music.votes DESC");
     const [rows] = await promisePool.query("SELECT * FROM hl21music ORDER BY votes DESC");
     responseErr = {
         err: [],
@@ -30,6 +29,9 @@ router.get('/', async function (req, res, next) {
         }
     }
 
+    // turn this off to disable voting
+    let votingEnabled = true;
+
     res.render('index.njk', {
         rows: rows,
         title: 'Music',
@@ -37,6 +39,7 @@ router.get('/', async function (req, res, next) {
         loggedIn: req.session.LoggedIn,
         voted: req.session.voted, 
         votedOn: req.session.votedOn, 
+        votingEnabled: votingEnabled,
     });
 });
 
