@@ -13,7 +13,6 @@ let responseErr = {}
 
 // GET music page
 router.get('/', async function (req, res, next) {
-    //const [rows] = await promisePool.query("SELECT hl21music.*, hl21users2.name FROM hl21music JOIN hl21users2 WHERE hl21music.authorId = hl21users2.id ORDER BY hl21music.votes DESC");
     const [rows] = await promisePool.query("SELECT * FROM hl21music ORDER BY votes DESC");
     responseErr = {
         err: [],
@@ -30,6 +29,9 @@ router.get('/', async function (req, res, next) {
         }
     }
 
+    // turn this off to disable voting
+    let votingEnabled = true;
+
     res.render('index.njk', {
         rows: rows,
         title: 'Music',
@@ -37,6 +39,7 @@ router.get('/', async function (req, res, next) {
         loggedIn: req.session.LoggedIn,
         voted: req.session.voted, 
         votedOn: req.session.votedOn, 
+        votingEnabled: votingEnabled,
     });
 });
 
@@ -69,7 +72,6 @@ router.post('/new', async function (req, res, next) {
     }
 
     if (responseErr.err.length === 0) {
-        //let spotify = "https://open.spotify.com/track/1xEV982DYbeabpl8HYcTLv?go=1&sp_cid=8e099f9f21238588ba475fc169228efd&utm_source=embed_player_p&utm_medium=desktop"
         let spotify = content
         let part = spotify.split("/");
         let songId = part[4].split("?");
