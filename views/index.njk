@@ -2,8 +2,8 @@
 {% block content %}
 
 <h1>Utspringslåt - NTI TE20</h1>
-<h3>Rösta för den låt du vill ska väljas till utspringet. Måsta vara inloggad för att rösta eller skicka in en låt.
-    1 röst per person. Sista dag är 29 maj. {% if loggedIn %}<a href="/new">Föreslå låt.</a>{% endif %} 
+<h3>Rösta för den låt du vill ska väljas till utspringet. Logga in för att rösta eller skicka in låt. 
+    1 röst per person. Sista dagen att rösta är 29 maj. {% if loggedIn %}<a href="/new">Föreslå låt.</a>{% endif %} 
     {% if voted and votingEnabled %}
     <form action="/removeVote" method="post" class="form-wo-border">
         <button class="changeBtn">Byt röst</button>

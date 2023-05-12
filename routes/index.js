@@ -90,7 +90,7 @@ router.post('/new', async function (req, res, next) {
 //GET and POST login
 router.get('/login', function (req, res, next) {
     if (req.session.LoggedIn) {
-        return res.redirect('/profile');
+        return res.redirect('/');
     } else {
         res.render('login.njk', {
             title: 'Logga in',
@@ -137,7 +137,7 @@ router.post('/login', async function (req, res, next) {
 //GET and POST register
 router.get('/register', async function (req, res) {
     if (req.session.LoggedIn) {
-        return res.redirect('/profile');
+        return res.redirect('/');
     } else {
         res.render('register.njk', { 
             title: 'Skapa konto',
@@ -166,9 +166,9 @@ router.post('/register', async function (req, res) {
     }
     
     if (responseErr.err.length === 0) {
-        const [testing] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
+        const [userExists] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
 
-        if (testing.length > 0) {
+        if (userExists.length > 0) {
             responseErr.err.push('Användarnamn är redan i användning');
             return res.redirect('/register');
         }
@@ -217,7 +217,7 @@ router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const {rowId} = req.body; // Temp(?) solution to make voting work
         const [rows] = await promisePool.query("SELECT hl21music.votes, hl21music.songId FROM hl21music WHERE id=?", rowId);
-        let count = rows[0].votes / 1; // javascript moment
+        let count = rows[0].votes / 1; // javascript moment / convert to int
         count = count + 1;
 
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, rowId]);
@@ -230,11 +230,11 @@ router.post('/vote', async function (req, res, next) {
     }
 });
 
-// POST for getting rid of your vote
+// POST for undoing your vote
 router.post('/removeVote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const [rows] = await promisePool.query("SELECT hl21music.votes FROM hl21music WHERE songId=?", req.session.votedOn);
-        let count = rows[0].votes / 1; // javascript moment
+        let count = rows[0].votes / 1; // javascript moment / convert to int
         count = count - 1;
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE songId=?", [count, req.session.votedOn]);
 
