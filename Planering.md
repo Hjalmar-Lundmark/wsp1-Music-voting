@@ -68,10 +68,14 @@ Kvarvarande att göra kan vara att utveckla hemsidan för att den ska innehålla
 
 12/5: Senast fixade jag errors i Glitch. Idag ska jag fixa ett Issue efter lite feedback som jag har fått, alltså att en klasskamrat vill info en låt som bara finns sparad som podd-avsnitt. Att fixa det är hyfsat enkelt men skulle behöva ändra hur låtar sparas i databasen.
 
-Jag ändrade lite i databasen och infon som skickades in i DB för att inkludera vilken typ av spotify media som är sparad. Genom att veta det i DB kan jag automatiskt embeda som de typerna istället för hård-kodat som en låt, det betyder att spellistor och eventuellt annan spotify media kan embedas automatiskt. Fortfarande så låter jag användarna bara lägga in låtar och eventuellt något avsnitt från podd om det är en låt, jag vet inte ens om utspringslåten får vara i avsnittsformat men det spelar ingen roll om ingen röstar för den låten. Jag formaterade också om lite kod och html för konsistens. 
+Jag ändrade lite i databasen och infon som skickades in i DB för att inkludera vilken typ av spotify media som är sparad. Genom att veta det i DB kan jag automatiskt embeda som de typerna istället för hård-kodat som en låt, det betyder att spellistor och eventuellt annan spotify media kan embedas automatiskt. Fortfarande så låter jag användarna bara lägga in låtar och eventuellt något avsnitt från podd om det är en låt, jag vet inte ens om utspringslåten får vara i avsnittsformat men det spelar ingen roll om ingen röstar för den låten. Jag formaterade också om lite kod och html för konsistens. Allt det gjordes i en annan github branch, namnged Hjalmar-Lundmark-test-branch. 
 
 Nästa lektion funderar jag på om jag ska lägga till en prototyp för fler klasser. Då gör jag startsidan till intro och knappar för att ta sig till vilken klass man vill, te20, ee20, osv. Då flyttar jag låtlistan till ```/:idk``` och kopplar id till vilken databas tabell som är relevant. Lägga in låtar blir på ```/:idk/newSong``` eller ```/newSong/:idk``` som också kopplas rätt. Login och skapa konto vet jag inte hur jag ska göra med. 
 
 ***
 
-16/5: 
+16/5: Sjuk. 
+
+***
+
+23/5: 
