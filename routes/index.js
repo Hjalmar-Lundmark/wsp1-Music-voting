@@ -34,7 +34,7 @@ router.get('/', async function (req, res, next) {
 
     res.render('index.njk', {
         rows: rows,
-        title: 'Music',
+        title: 'Musik',
         user: req.session.user,
         loggedIn: req.session.LoggedIn,
         voted: req.session.voted, 
@@ -49,7 +49,7 @@ router.get('/new', async function (req, res, next) {
         return res.redirect('/login');
     } else {
         res.render('new.njk', {
-            title: 'Make a Post',
+            title: 'Infoga låt',
             user: req.session.user,
             loggedIn: req.session.LoggedIn,
             error: responseErr,
@@ -68,7 +68,9 @@ router.post('/new', async function (req, res, next) {
         responseErr.err.push('Infoga innehåll');
     }
     if (!content.startsWith("https://open.spotify.com/track/")) {
-        responseErr.err.push('Behöver vara en spotify låt länk');
+        if (!content.startsWith("https://open.spotify.com/episode/")) {
+            responseErr.err.push('Behöver vara en spotify låt länk');
+        }
     }
 
     if (responseErr.err.length === 0) {
@@ -77,8 +79,8 @@ router.post('/new', async function (req, res, next) {
         let songId = part[4].split("?");
 
         // sanitizing is not needed because I have already edited the string enough
-        const [rows] = await promisePool.query("INSERT INTO hl21music (authorId, songId, votes) VALUES (?, ?, ?)",
-            [req.session.userId, songId[0], 0]);
+        const [rows] = await promisePool.query("INSERT INTO hl21music (authorId, songId, votes, sType) VALUES (?, ?, ?, ?)",
+            [req.session.userId, songId[0], 0, part[3]]);
         res.redirect('/');
     } else {
         res.redirect('/new');
@@ -88,10 +90,10 @@ router.post('/new', async function (req, res, next) {
 //GET and POST login
 router.get('/login', function (req, res, next) {
     if (req.session.LoggedIn) {
-        return res.redirect('/profile');
+        return res.redirect('/');
     } else {
         res.render('login.njk', {
-            title: 'Login',
+            title: 'Logga in',
             error: responseErr,
         });
     }
@@ -103,10 +105,10 @@ router.post('/login', async function (req, res, next) {
         err: [],
     }
     if (username === "") {
-        responseErr.err.push('Username is required');
+        responseErr.err.push('Fyll i användarnamn');
     }
     if (password === "") {
-        responseErr.err.push('Password is required');
+        responseErr.err.push('Fyll i lösenord');
     }
     if (responseErr.err.length === 0) {
         const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", [username]);
@@ -118,12 +120,12 @@ router.post('/login', async function (req, res, next) {
                     req.session.LoggedIn = true;
                     return res.redirect('/');
                 } else {
-                    responseErr.err.push('Invalid username or password');
+                    responseErr.err.push('Inkorrekt användarnamn eller lösenord');
                     res.redirect('/login');
                 }
             });
         } else {
-            responseErr.err.push('Wrong credentials');
+            responseErr.err.push('Inkorrekt användarnamn');
             res.redirect('/login');
         }
     } else {
@@ -135,10 +137,10 @@ router.post('/login', async function (req, res, next) {
 //GET and POST register
 router.get('/register', async function (req, res) {
     if (req.session.LoggedIn) {
-        return res.redirect('/profile');
+        return res.redirect('/');
     } else {
         res.render('register.njk', { 
-            title: 'Register account',
+            title: 'Skapa konto',
             error: responseErr, 
         })
     }
@@ -151,23 +153,23 @@ router.post('/register', async function (req, res) {
     }
 
     if (username === "") {
-        responseErr.err.push('Username is required');
+        responseErr.err.push('Fyll i användarnamn');
     }
     if (password === "") {
-        responseErr.err.push('Password is required');
+        responseErr.err.push('Fyll i lösenord');
     }
     if (password.length < 8) {
-        responseErr.err.push('Password needs atleast 8 characters');
+        responseErr.err.push('Lösenord måste innehålla minst 8 tecken');
     }
     if (password !== passwordConfirmation) {
-        responseErr.err.push('Passwords need to match');
+        responseErr.err.push('Lösenord måste vara lika');
     }
     
     if (responseErr.err.length === 0) {
-        const [testing] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
+        const [userExists] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
 
-        if (testing.length > 0) {
-            responseErr.err.push('Username is already taken');
+        if (userExists.length > 0) {
+            responseErr.err.push('Användarnamn är redan i användning');
             return res.redirect('/register');
         }
 
@@ -215,7 +217,7 @@ router.post('/vote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const {rowId} = req.body; // Temp(?) solution to make voting work
         const [rows] = await promisePool.query("SELECT hl21music.votes, hl21music.songId FROM hl21music WHERE id=?", rowId);
-        let count = rows[0].votes / 1; // javascript moment
+        let count = rows[0].votes / 1; // javascript moment / convert to int
         count = count + 1;
 
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE id=?", [count, rowId]);
@@ -228,11 +230,11 @@ router.post('/vote', async function (req, res, next) {
     }
 });
 
-// POST for getting rid of your vote
+// POST for undoing your vote
 router.post('/removeVote', async function (req, res, next) {
     if (req.session.LoggedIn) {
         const [rows] = await promisePool.query("SELECT hl21music.votes FROM hl21music WHERE songId=?", req.session.votedOn);
-        let count = rows[0].votes / 1; // javascript moment
+        let count = rows[0].votes / 1; // javascript moment / convert to int
         count = count - 1;
         const [row] = await promisePool.query("UPDATE hl21music SET votes=? WHERE songId=?", [count, req.session.votedOn]);
 
