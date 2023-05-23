@@ -78,4 +78,4 @@ Nästa lektion funderar jag på om jag ska lägga till en prototyp för fler kla
 
 ***
 
-23/5: 
+23/5: Innan lektionen så slog jag ihop grenarna i github så ändringarna hamnade i huvudgrenen Main och på Glitch. Nu funderar jag på att skapa en admin funktion, där ett konto får speciella funktioner, bland annat att se användare, vilka som har röstat och sådant. Admin kanske också kan ha funktioner för att ta bort användare eller låtar som inte passar. All info över är redan sparad i databasen så jag behöver bara skapa någon sida och några funktioner. 
