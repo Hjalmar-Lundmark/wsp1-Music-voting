@@ -119,7 +119,6 @@ router.post('/login', async function (req, res, next) {
                     req.session.user = username;
                     req.session.userId = users[0].id;
                     req.session.LoggedIn = true;
-                    console.log(users[0].status)
                     if (users[0].status === 'admin') {
                         req.session.admin = true
                     }

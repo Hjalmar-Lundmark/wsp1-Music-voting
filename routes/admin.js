@@ -21,7 +21,6 @@ router.get('/', async function (req, res, next) {
             admin: req.session.admin,
         });
     } else {
-        console.log('non admin' + req.session.admin + '   ' + req.session.LoggedIn)
         res.redirect('/')
     }
 });
