@@ -1,10 +1,12 @@
 # Planering - Sida för utspringsslåt
 
+[Readme.md](/README.md) | [PM.md](/PM.md)
+
 ## Ide
 
 Min möjliga ide är att göra en hemsida för att rösta på låt till utspringet på avslutningen. Spotify-embed kommer finnas för att se och höra på låtarna. Användare kan logga in för att lägga till en låt och rösta på låtar. [Passport.js](https://www.npmjs.com/package/passport) kommer kanske användas för att logga in med skolmejl/ google konto och se till att en användare inte kan rösta flera gånger; annars löser jag det utan google-login. En person  kan rösta på endast en låt. 
 
-En annan ide kan vara multiplayer för [mitt julspel](https://github.com/Hjalmar-Lundmark/te20-spel) med hjälp av socket.io, alltså göra att 2 eller fler pers stjuter varann för döda dem istället. Det kanske bara blir en kopia av [Shellshock](https://store.steampowered.com/app/326460/ShellShock_Live/) som finns på steam. Jag kommer nog inte gå med denna ide dock. 
+En annan ide kan vara multiplayer för [mitt julspel](https://github.com/Hjalmar-Lundmark/te20-spel) med hjälp av sockets, alltså göra att 2 eller fler pers stjuter varann för döda dem istället. Det kanske bara blir en kopia av [Shellshock](https://store.steampowered.com/app/326460/ShellShock_Live/) som finns på steam. Jag kommer nog inte gå med denna ide dock. 
 
 Jag funderade också på en liten sida för att läsa intro till mitt GA och kunna ladda ner det. Den sidan skulle vara liten med få funktioner så jag går inte med den iden. 
 
@@ -78,4 +80,13 @@ Nästa lektion funderar jag på om jag ska lägga till en prototyp för fler kla
 
 ***
 
-23/5: Innan lektionen så slog jag ihop grenarna i github så ändringarna hamnade i huvudgrenen Main och på Glitch. Nu funderar jag på att skapa en admin funktion, där ett konto får speciella funktioner, bland annat att se användare, vilka som har röstat och sådant. Admin kanske också kan ha funktioner för att ta bort användare eller låtar som inte passar. All info över är redan sparad i databasen så jag behöver bara skapa någon sida och några funktioner. 
+23/5: Innan lektionen så slog jag ihop grenarna i github så ändringarna hamnade i huvudgrenen Main och på Glitch hostingen. Nu funderar jag på att skapa en admin funktion, där ett konto får speciella funktioner, bland annat att se användare, vilka som har röstat och sådant. Admin kanske också kan ha funktioner för att ta bort användare eller låtar som inte passar. All info över är redan sparad i databasen så jag behöver bara skapa någon sida och några funktioner. 
+
+Idag har jag skapat så konton kan ha admin rank/status och kan då komma åt en lista av alla användare. Där kan då adminen se vilka som har röstat på en låt samt vilken låt det är. Adminen skulle kunna deleta konton genom en knapp där vilket tar bort deras röst om den har röstat innan och tar sedan bort kontot. Nästa lektion kanske jag lägger till en funktion för att ta bort en låt från låtlistan. 
+![admin page](/public/images/admin.jpg "Admin page")
+
+Arbetet gjordes i ```hjalmar-lundmark-test-branch``` och flyttades sedan över till ```main``` och Glitch
+
+***
+
+26/5: 

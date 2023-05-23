@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<div>
+    <div class="uListItem">
+        <div class="spacer">
+            <h2>Namn</h2>
+        </div>
+        <div class="spacer">
+            <p>Låt de har röstat på</p>
+        </div>
+        <div class="spacer spacerRight">
+            <p></p>
+        </div>
+    </div>
+</div>
+{% for row in rows %}
+<div class="uList">
+    <div class="uListItem">
+        <div class="spacer">
+            <h3>{{row.name}}</h3>
+        </div>
+        <div class="spacer">
+            <p>{{row.votedOn}}</p>
+        </div>
+        <div class="spacer spacerRight">
+            {% if (row.status == 'admin') %}
+                <p>Admin</p>
+            {% else %}
+                <form action="/deleteUser" method="post" class="form-wo-border">
+                    <button>Radera konto</button>
+                    <select name="rowId" id="rowId">
+                        <option value="{{ row.id }}"></option>
+                    </select>
+                    <select name="votedSong" id="votedSong">
+                        <option>{{ row.votedOn }}</option>
+                    </select>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

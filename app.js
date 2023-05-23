@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin');
 
 app.use(express.static('public'))
 
@@ -23,6 +24,7 @@ nunjucks.configure('views', {
 });
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
