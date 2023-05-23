@@ -310,4 +310,27 @@ select {
   border-radius: 20px;
 }
 
+.uList {
+  background-color: lightblue;
+  border-top: 1px solid darkblue;
+  border-bottom: 1px solid darkblue;
+}
+
+.uListItem {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.spacer {
+  width: 33%;
+}
+
+.spacerRight {
+  display: flex;
+  justify-content: right;
+}
+
 /*# sourceMappingURL=style.css.map */
