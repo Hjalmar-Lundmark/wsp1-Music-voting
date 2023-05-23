@@ -9,6 +9,11 @@
 
         <div class="navbar__collapse">
             <ul class="menu">
+                {% if loggedIn and admin %}
+                <li>
+                    <a href="/admin">Admin krafter</a>
+                </li>
+                {% endif %}
                 {% if loggedIn %}
                 <li>
                     <a href="/new">Föreslå låt</a>

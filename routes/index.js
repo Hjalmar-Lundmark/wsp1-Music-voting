@@ -34,12 +34,13 @@ router.get('/', async function (req, res, next) {
 
     res.render('index.njk', {
         rows: rows,
-        title: 'Musik',
+        title: 'Utspringslåt - NTI TE20',
         user: req.session.user,
         loggedIn: req.session.LoggedIn,
         voted: req.session.voted, 
         votedOn: req.session.votedOn, 
         votingEnabled: votingEnabled,
+        admin: req.session.admin, 
     });
 });
 
@@ -118,6 +119,9 @@ router.post('/login', async function (req, res, next) {
                     req.session.user = username;
                     req.session.userId = users[0].id;
                     req.session.LoggedIn = true;
+                    if (users[0].status === 'admin') {
+                        req.session.admin = true
+                    }
                     return res.redirect('/');
                 } else {
                     responseErr.err.push('Inkorrekt användarnamn eller lösenord');
@@ -179,6 +183,9 @@ router.post('/register', async function (req, res) {
             const [users] = await promisePool.query("SELECT * FROM hl21users2 WHERE name=?", username);
             req.session.userId = users[0].id;
             req.session.LoggedIn = true;
+            if (users[0].status === 'admin') {
+                req.session.admin = true
+            }
             return res.redirect('/'); // Logs the user in after account is created
         });
     } else {
@@ -194,6 +201,7 @@ router.post('/delete', async function (req, res, next) {
         req.session.LoggedIn = false;
         req.session.user = "";
         req.session.userId = null; // not sure what values these should have
+        req.session.admin = false
         res.redirect('/');
     } else {
         return res.status(401).send("Access denied");
@@ -206,6 +214,7 @@ router.post('/logout', async function (req, res, next) {
         req.session.LoggedIn = false; 
         req.session.user = "";
         req.session.userId = null; // not sure what values these should have
+        req.session.admin = false
         res.redirect('/');
     } else {
         return res.redirect('/');

@@ -25,7 +25,13 @@
         <div class="spacer">
             <p>{{row.votedOn}}</p>
         </div>
-        <div class="spacer spacerRight"><button>Radera konto</button></div>
+        <div class="spacer spacerRight">
+            {% if (row.status == 'admin') %}
+                <p>Admin</p>
+            {% else %}
+            <button>Radera konto</button>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endfor %}

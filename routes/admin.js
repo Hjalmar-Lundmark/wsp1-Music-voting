@@ -10,14 +10,14 @@ const pool = mysql.createPool({
 const promisePool = pool.promise();
 
 router.get('/', async function(req, res, next){
-    const [rows] = await promisePool.query("SELECT name, votedOn FROM hl21users2");
+    const [rows] = await promisePool.query("SELECT id, name, votedOn, status FROM hl21users2");
 
     res.render('uList.njk', {
         title: 'Lista av användare',
         rows: rows, 
         user: req.session.user,
         loggedIn: req.session.LoggedIn,
-        
+        admin: req.session.admin, 
     });
 });
 
