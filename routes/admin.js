@@ -9,16 +9,21 @@ const pool = mysql.createPool({
 });
 const promisePool = pool.promise();
 
-router.get('/', async function(req, res, next){
-    const [rows] = await promisePool.query("SELECT id, name, votedOn, status FROM hl21users2");
+router.get('/', async function (req, res, next) {
+    if (req.session.LoggedIn === true && req.session.admin === true) {
+        const [rows] = await promisePool.query("SELECT id, name, votedOn, status FROM hl21users2");
 
-    res.render('uList.njk', {
-        title: 'Lista av användare',
-        rows: rows, 
-        user: req.session.user,
-        loggedIn: req.session.LoggedIn,
-        admin: req.session.admin, 
-    });
+        res.render('uList.njk', {
+            title: 'Lista av användare',
+            rows: rows,
+            user: req.session.user,
+            loggedIn: req.session.LoggedIn,
+            admin: req.session.admin,
+        });
+    } else {
+        console.log('non admin' + req.session.admin + '   ' + req.session.LoggedIn)
+        res.redirect('/')
+    }
 });
 
 module.exports = router;

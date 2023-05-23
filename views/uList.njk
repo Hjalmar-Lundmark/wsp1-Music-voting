@@ -29,7 +29,15 @@
             {% if (row.status == 'admin') %}
                 <p>Admin</p>
             {% else %}
-            <button>Radera konto</button>
+                <form action="/deleteUser" method="post" class="form-wo-border">
+                    <button>Radera konto</button>
+                    <select name="rowId" id="rowId">
+                        <option value="{{ row.id }}"></option>
+                    </select>
+                    <select name="votedSong" id="votedSong">
+                        <option>{{ row.votedOn }}</option>
+                    </select>
+                </form>
             {% endif %}
         </div>
     </div>

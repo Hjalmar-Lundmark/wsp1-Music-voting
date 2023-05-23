@@ -1,5 +1,7 @@
 # Planering - Sida för utspringsslåt
 
+[Readme.md](/README.md) | [PM.md](/PM.md)
+
 ## Ide
 
 Min möjliga ide är att göra en hemsida för att rösta på låt till utspringet på avslutningen. Spotify-embed kommer finnas för att se och höra på låtarna. Användare kan logga in för att lägga till en låt och rösta på låtar. [Passport.js](https://www.npmjs.com/package/passport) kommer kanske användas för att logga in med skolmejl/ google konto och se till att en användare inte kan rösta flera gånger; annars löser jag det utan google-login. En person  kan rösta på endast en låt. 
@@ -78,4 +80,13 @@ Nästa lektion funderar jag på om jag ska lägga till en prototyp för fler kla
 
 ***
 
-23/5: Innan lektionen så slog jag ihop grenarna i github så ändringarna hamnade i huvudgrenen Main och på Glitch. Nu funderar jag på att skapa en admin funktion, där ett konto får speciella funktioner, bland annat att se användare, vilka som har röstat och sådant. Admin kanske också kan ha funktioner för att ta bort användare eller låtar som inte passar. All info över är redan sparad i databasen så jag behöver bara skapa någon sida och några funktioner. 
+23/5: Innan lektionen så slog jag ihop grenarna i github så ändringarna hamnade i huvudgrenen Main och på Glitch hostingen. Nu funderar jag på att skapa en admin funktion, där ett konto får speciella funktioner, bland annat att se användare, vilka som har röstat och sådant. Admin kanske också kan ha funktioner för att ta bort användare eller låtar som inte passar. All info över är redan sparad i databasen så jag behöver bara skapa någon sida och några funktioner. 
+
+Idag har jag skapat så konton kan ha admin rank/status och kan då komma åt en lista av alla användare. Där kan då adminen se vilka som har röstat på en låt samt vilken låt det är. Adminen skulle kunna deleta konton genom en knapp där vilket tar bort deras röst om den har röstat innan och tar sedan bort kontot. Nästa lektion kanske jag lägger till en funktion för att ta bort en låt från låtlistan. 
+![admin page](/public/images/admin.jpg "Admin page")
+
+Arbetet gjordes i ```hjalmar-lundmark-test-branch``` och flyttades sedan över till ```main``` och Glitch
+
+***
+
+26/5: 
