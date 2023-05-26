@@ -91,7 +91,7 @@ Arbetet gjordes i ```hjalmar-lundmark-test-branch``` och flyttades sedan över t
 
 26/5: Förra lektionen skapade jag en lista av användare som admin konton kan se. Idag ska jag fortsätta på den iden med en lista av låtar och vem som har skickat in vad. 
 
-Det gick bra att hämta datan och sätta upp den i en lista. Att den listan skulle rymma allt och se bra ut var svårt men det gick. 
+Det gick bra att hämta datan och sätta upp den i en lista. Att den listan skulle rymma allt och se bra ut var svårt men det gick. Nu skulle jag säga att jag är klar med funktioner och att lägga till mer saker, då är det bara att skriva PM och möjligtvis mindre ändringar kvar. 
 ![admin page2](/public/images/admin2.jpg "Admin page 2")
 
 Precis som tidigare så gjordes dessa ändringar i test grenen och flyttades över i slutet. Sedan började jag skriva PM. 
