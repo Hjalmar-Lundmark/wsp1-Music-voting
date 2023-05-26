@@ -85,8 +85,17 @@ Nästa lektion funderar jag på om jag ska lägga till en prototyp för fler kla
 Idag har jag skapat så konton kan ha admin rank/status och kan då komma åt en lista av alla användare. Där kan då adminen se vilka som har röstat på en låt samt vilken låt det är. Adminen skulle kunna deleta konton genom en knapp där vilket tar bort deras röst om den har röstat innan och tar sedan bort kontot. Nästa lektion kanske jag lägger till en funktion för att ta bort en låt från låtlistan. 
 ![admin page](/public/images/admin.jpg "Admin page")
 
-Arbetet gjordes i ```hjalmar-lundmark-test-branch``` och flyttades sedan över till ```main``` och Glitch
+Arbetet gjordes i ```hjalmar-lundmark-test-branch``` och flyttades sedan över till ```main``` och Glitch. 
 
 ***
 
-26/5: 
+26/5: Förra lektionen skapade jag en lista av användare som admin konton kan se. Idag ska jag fortsätta på den iden med en lista av låtar och vem som har skickat in vad. 
+
+Det gick bra att hämta datan och sätta upp den i en lista. Att den listan skulle rymma allt och se bra ut var svårt men det gick. 
+![admin page2](/public/images/admin2.jpg "Admin page 2")
+
+Precis som tidigare så gjordes dessa ändringar i test grenen och flyttades över i slutet. Sedan började jag skriva PM. 
+
+***
+
+30/5: 

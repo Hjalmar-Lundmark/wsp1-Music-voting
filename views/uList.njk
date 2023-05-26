@@ -44,4 +44,43 @@
 </div>
 {% endfor %}
 
+
+<h1>Låtar</h1>
+
+<div>
+    <div class="uListItem">
+        <div class="spacerSongs">
+            <h2>Id</h2>
+        </div>
+        <div class="spacerSongs">
+            <p>Låt Id</p>
+        </div>
+        <div class="spacerSongs">
+            <p>Röster</p>
+        </div>
+        <div class="spacerSongs">
+            <p>Förslag av</p>
+        </div>
+    </div>
+</div>
+{% for song in songs %}
+<div class="uList">
+    <div class="uListItem">
+        <div class="spacerSongs">
+            <h3>{{song.id - 1}}</h3>
+        </div>
+        <div class="spacerSongs">
+            <p class="smallerText">{{song.songId}}</p>
+        </div>
+        <div class="spacerSongs">
+            {{song.votes}}
+        </div>
+        <div class="spacerSongs">
+            {{song.name}}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
 {% endblock %}
