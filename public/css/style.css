@@ -337,6 +337,14 @@ select {
   width: 33%;
 }
 
+.spacerSongs {
+  width: 25%;
+}
+
+.smallerText {
+  font-size: small;
+}
+
 .spacerRight {
   display: flex;
   justify-content: right;
