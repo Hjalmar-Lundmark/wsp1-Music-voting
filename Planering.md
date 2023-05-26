@@ -19,7 +19,9 @@ Jag funderade också på en liten sida för att läsa intro till mitt GA och kun
 | v18  | Login med google?  |   |
 | v19  | ^  | -  |
 | v20  | ^  | ^  |
-| v21  | Hosting, klar, visa upp?  |   |
+| v21  |   |   |
+| v22  | Skriva PM, finsjusteringar  | - |
+| v23  | Hosting, klar, visa upp?  |   |
 
 
 ## Loggbok
