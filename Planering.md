@@ -8,7 +8,7 @@ Min möjliga ide är att göra en hemsida för att rösta på låt till utspring
 
 En annan ide kan vara multiplayer för [mitt julspel](https://github.com/Hjalmar-Lundmark/te20-spel) med hjälp av sockets, alltså göra att 2 eller fler pers stjuter varann för döda dem istället. Det kanske bara blir en kopia av [Shellshock](https://store.steampowered.com/app/326460/ShellShock_Live/) som finns på Steam[.](/public/images/ssl.png) Jag kommer nog inte gå med denna ide dock. 
 
-Jag funderade också på en liten sida för att läsa intro till mitt GA och kunna ladda ner det. Den sidan skulle vara liten med få funktioner så jag går inte med den iden. Nvm gjorde denna snabbt på fritiden, [hjalmar-ga.glitch.me/](https://hjalmar-ga.glitch.me/). 
+Jag funderade också på en liten sida för att läsa intro till mitt gymnasiearbete och kunna ladda ner det. Den sidan skulle vara liten med få funktioner så jag går inte med den iden. Nvm gjorde denna snabbt på fritiden, [hjalmar-ga.glitch.me/](https://hjalmar-ga.glitch.me/). 
 
 ## Grovplanering 
 
