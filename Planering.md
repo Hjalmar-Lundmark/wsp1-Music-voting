@@ -6,9 +6,9 @@
 
 Min möjliga ide är att göra en hemsida för att rösta på låt till utspringet på avslutningen. Spotify-embed kommer finnas för att se och höra på låtarna. Användare kan logga in för att lägga till en låt och rösta på låtar. [Passport.js](https://www.npmjs.com/package/passport) kommer kanske användas för att logga in med skolmejl/ google konto och se till att en användare inte kan rösta flera gånger; annars löser jag det utan google-login. En person  kan rösta på endast en låt. 
 
-En annan ide kan vara multiplayer för [mitt julspel](https://github.com/Hjalmar-Lundmark/te20-spel) med hjälp av sockets, alltså göra att 2 eller fler pers stjuter varann för döda dem istället. Det kanske bara blir en kopia av [Shellshock](https://store.steampowered.com/app/326460/ShellShock_Live/) som finns på steam. Jag kommer nog inte gå med denna ide dock. 
+En annan ide kan vara multiplayer för [mitt julspel](https://github.com/Hjalmar-Lundmark/te20-spel) med hjälp av sockets, alltså göra att 2 eller fler pers stjuter varann för döda dem istället. Det kanske bara blir en kopia av [Shellshock](https://store.steampowered.com/app/326460/ShellShock_Live/) som finns på Steam[.](/public/images/ssl.png) Jag kommer nog inte gå med denna ide dock. 
 
-Jag funderade också på en liten sida för att läsa intro till mitt GA och kunna ladda ner det. Den sidan skulle vara liten med få funktioner så jag går inte med den iden. 
+Jag funderade också på en liten sida för att läsa intro till mitt GA och kunna ladda ner det. Den sidan skulle vara liten med få funktioner så jag går inte med den iden. Nvm gjorde denna snabbt på fritiden, [hjalmar-ga.glitch.me/](https://hjalmar-ga.glitch.me/). 
 
 ## Grovplanering 
 
