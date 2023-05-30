@@ -30,7 +30,7 @@ router.get('/', async function (req, res, next) {
     }
 
     // turn this off to disable voting
-    let votingEnabled = true;
+    let votingEnabled = false;
 
     res.render('index.njk', {
         rows: rows,
