@@ -20,8 +20,8 @@ Jag funderade också på en liten sida för att läsa intro till mitt GA och kun
 | v19  | ^  | -  |
 | v20  | ^  | ^  |
 | v21  |   |   |
-| v22  | Skriva PM, finsjusteringar  | - |
-| v23  | Hosting, klar, visa upp?  |   |
+| v22  | Skriva PM, finsjusteringar, bli klar?  | - |
+| v23  | -  | -  |
 
 
 ## Loggbok
@@ -100,4 +100,4 @@ Precis som tidigare så gjordes dessa ändringar i test grenen och flyttades öv
 
 ***
 
-30/5: 
+30/5: Stängde röstningen, skrev PM. 
