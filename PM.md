@@ -37,7 +37,7 @@ Under de första gick det bra och tidsplaneringen följdes ganska exakt till att
 ## Vad har gått bra?
 Arbetet har flutit på bra och jag fick in allt jag planerade. Jag fastnade aldrig riktigt på någon del utan jag tog mig över alla problem jag stötte på. Att det har gått så bra är beroende på att jag tycker att sånt här är roligt, att jag kan koncentrera mig på att lösa problem och ta mig framåt hela lektionen; och att jag testar olika saker samt googlar för att lösa de problem och errors jag stöter på. 
 
-## Vad har gått dåligt? 
+## Vad har gått mindre bra? 
 En sak som var i planeringen var att byta ut login till att använda Googles egna, vilket skulle öka säkerheten på sidan och göra det mycket svårare för någon att rösta flera gånger. Jag tänkte använda mig av [Passport.js](https://www.npmjs.com/package/passport) men på grund av dålig dokumentation och att jag inte visste hur jag skulle koppla det till skolans databas så bestämde jag mig att strycka den planen för att fokusera på att få upp sidan på internet i vettig tid och att allt skulle fungera. 
 
 ## Vidareutveckling
